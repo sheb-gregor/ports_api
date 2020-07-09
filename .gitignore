@@ -1,0 +1,7 @@
+.idea/*
+config.yaml
+*.bin
+vendor
+
+ports.json
+assignment.md

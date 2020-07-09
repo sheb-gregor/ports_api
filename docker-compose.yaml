@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  client_api:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - ./env/template.env
+    ports:
+      - 8080:8080
+    #    volumes:
+    #      - './config.yaml:/config.yaml'
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      ps_net:
+
+  port_domain_service:
+    build:
+      dockerfile: Dockerfile
+      context: .
+    env_file:
+      - ./env/template.env
+    ports:
+      - 8080:8080
+    #    volumes:
+    #      - './config.yaml:/config.yaml'
+    depends_on:
+      - postgres
+      - rabbitmq
+    networks:
+      ps_net:
+
+  postgres:
+    image: postgres:12-alpine
+    env_file:
+      - ./env/template.env
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      ps_net:
+
+networks:
+  ps_net: {}
+
+volumes:
+  postgres_data: {}
