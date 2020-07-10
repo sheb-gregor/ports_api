@@ -1,0 +1,31 @@
+log:
+  app_name: todo
+  level: "env:LOG_LEVEL"
+  add_trace: true
+  sentry: ""
+  json: false
+
+api:
+  host: 0.0.0.0
+  port: 8080
+  enable_cors: true
+  api_request_timeout: 60
+
+db:
+  driver: 'postgres'
+  host: '127.0.0.1'
+  user: 'env:POSTGRES_USER'
+  password: 'env:POSTGRES_PASSWORD'
+  name: 'ports_storage'
+
+  init_timeout: 60 # in seconds
+  auto_migrate: true
+  wait_for_db: true
+#  optional connection parameters
+#  params:
+#    max_idle: 100
+#    max_open: 300
+#    max_lifetime: 3200 # in milliseconds
+
+ports_service: port_domain_service:18080
+data_file: ./ports.json

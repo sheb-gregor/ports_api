@@ -2,34 +2,36 @@ version: '3'
 
 services:
   client_api:
-    build:
-      dockerfile: Dockerfile
-      context: .
+    image: client_api
+#    build:
+#      context: .
+#      args:
+#        - SERVICE=client_api
+#        - CONFIG=tmpl
     env_file:
       - ./env/template.env
     ports:
       - 8080:8080
-    #    volumes:
-    #      - './config.yaml:/config.yaml'
+    volumes:
+      - './ports.json:/ports.json'
     depends_on:
-      - postgres
-      - rabbitmq
+      - port_domain_service
     networks:
       ps_net:
 
   port_domain_service:
-    build:
-      dockerfile: Dockerfile
-      context: .
+    image: port_domain_service
+#    build:
+#      context: ./
+#      args:
+#        - SERVICE=port_domain_service
+#        - CONFIG=tmpl
     env_file:
       - ./env/template.env
     ports:
-      - 8080:8080
-    #    volumes:
-    #      - './config.yaml:/config.yaml'
+      - 8090:8090
     depends_on:
       - postgres
-      - rabbitmq
     networks:
       ps_net:
 

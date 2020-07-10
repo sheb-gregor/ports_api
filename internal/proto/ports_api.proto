@@ -1,0 +1,60 @@
+syntax = "proto3";
+
+option go_package = "ports_api/internal/pb";
+
+package ports_api;
+
+
+service PortDomainService {
+    rpc GetPort (GetPortRequest) returns (Port) {
+    }
+    rpc GetPortsList (PageParams) returns (PortList) {
+    }
+
+    rpc SavePort (NewPort) returns (Result) {
+    }
+}
+
+message PageParams {
+    string order = 1;
+    uint64 page = 2;
+    uint64 page_size = 3;
+    string order_by = 4;
+}
+
+message PortList {
+    uint64 page = 1;
+    uint64 pageSize = 2;
+    string order = 3;
+    string order_by = 4;
+    int64 total = 5;
+    repeated Port records = 6;
+}
+
+
+message Result {
+    bool ok = 1;
+}
+
+message GetPortRequest {
+    string unlocode = 1;
+}
+
+
+message NewPort {
+    string unlocode = 1;
+    Port port = 2;
+}
+
+message Port {
+    string name = 1;
+    string city = 2;
+    string country = 3;
+    repeated string alias = 4;
+    repeated string regions = 5;
+    repeated float coordinates = 6;
+    string province = 7;
+    string timezone = 8;
+    repeated string unlocs = 9;
+    string code = 10;
+}

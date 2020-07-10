@@ -1,0 +1,11 @@
+GET http://127.0.0.1:8080/info
+Accept: application/json
+
+###
+
+GET http://127.0.0.1:8080/ports?order=asc&page=1&pageSize=2&orderBy=name
+Accept: application/json
+
+###
+GET http://127.0.0.1:8080/ports/AEAUH
+Accept: application/json

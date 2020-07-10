@@ -1,0 +1,24 @@
+log:
+  app_name: todo
+  level: "env:LOG_LEVEL"
+  add_trace: true
+  sentry: ""
+  json: false
+
+db:
+  driver: 'postgres'
+  host: '127.0.0.1'
+  user: 'env:POSTGRES_USER'
+  password: 'env:POSTGRES_PASSWORD'
+  name: 'ports_storage'
+
+  init_timeout: 60 # in seconds
+  auto_migrate: true
+  wait_for_db: true
+#  optional connection parameters
+#  params:
+#    max_idle: 100
+#    max_open: 300
+#    max_lifetime: 3200 # in milliseconds
+
+server_address: 0.0.0.0:18080
