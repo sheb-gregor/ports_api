@@ -3,5 +3,5 @@ config.yaml
 *.bin
 vendor
 
-ports.json
+#ports.json
 assignment.md
